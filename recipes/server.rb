@@ -12,6 +12,10 @@ include_recipe "sensu::rabbitmq"
 include_recipe "sensu::server_service"
 include_recipe "sensu::api_service"
 
+node['sensu-wrapper']['dependency_pkgs'].each do |pkg|
+  sensu_gem pkg
+end
+
 include_recipe 'sensu-wrapper::handlers'
 include_recipe 'sensu-wrapper::checks'
 
