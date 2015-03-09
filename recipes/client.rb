@@ -9,6 +9,10 @@
 
 include_recipe 'sensu::default'
 
+node['sensu-wrapper']['dependency_pkgs'].each do |pkg|
+  sensu_gem pkg
+end
+
 if node['sensu-wrapper']['client']['ipaddress'] then
   ipaddress = node['sensu-wrapper']['client']['ipaddress']
 else
