@@ -34,6 +34,7 @@ sensu_client node['hostname'] do
   address ipaddress
   subscriptions subscriptions
   keepalive node['sensu-wrapper']['client']['keepalive']
+  additional node['sensu-wrapper']['client']['additional']
 end
 
 include_recipe 'sensu::client_service'

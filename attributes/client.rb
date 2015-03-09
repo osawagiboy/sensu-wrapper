@@ -4,12 +4,13 @@ default['sensu-wrapper']['client']['ipaddress'] = false
 default['sensu-wrapper']['client']['roles'] = []
 default['sensu-wrapper']['client']['keepalive'] = {
     :thresholds => {
-      :warning => 20,
-      :critical => 120,
+      :warning => 120,
+      :critical => 180,
     },
     :refresh => 240,
     :handlers => ['default']
 }
+default['sensu-wrapper']['client']['additional'] = {}
 
 # checks plugins
 default['sensu-wrapper']['client']['default_plugins'] = [
