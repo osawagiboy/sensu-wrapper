@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-sensu_handler "default_handler" do
+sensu_handler "default" do
   type "pipe"
   command "exit 0"
 end
