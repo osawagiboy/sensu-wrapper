@@ -16,11 +16,3 @@ checks.each do |check|
     end
   end
 end 
-
-service "sensu-server" do
-  action :restart
-end
-
-service "sensu-api" do
-  action :restart
-end

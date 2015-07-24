@@ -26,11 +26,3 @@ sensu_json_file "#{node.sensu.directory}/conf.d/handlers/mailer_config.json" do
   mode 00640
   content(mailer['json_config'])
 end
-  
-service "sensu-server" do
-  action :restart
-end
-
-service "sensu-api" do
-  action :restart
-end

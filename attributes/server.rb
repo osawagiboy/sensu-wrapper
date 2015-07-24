@@ -1,3 +1,5 @@
+default['sensu-wrapper']['server']['install_method'] = 'package'
+
 # handlers
 default['sensu-wrapper']['server']['handlers'] = []
 
