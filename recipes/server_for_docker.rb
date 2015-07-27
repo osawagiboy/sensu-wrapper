@@ -7,12 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w(/etc/sensu /var/log/sensu /etc/sensu/conf.d /etc/sensu/plugins /etc/sensu/mutators /etc/sensu/handlers /etc/sensu/extensions /etc/sensu/conf.d/handlers /etc/sensu/conf.d/checks).each do |dir|
-  directory dir do
-    mode 00777
-  end
-end
-
 ruby_block "sensu_service_trigger" do
   block do
     # Sensu service action trigger for LWRP's
@@ -22,12 +16,29 @@ end
 
 group 'sensu' do
   append true
+  gid '10001'
 end
 
 user 'sensu' do
   gid 'sensu'
+  uid '10001'
   home '/opt/sensu'
   shell '/bin/false'
+end
+
+%w(/etc/sensu /etc/sensu/conf.d /etc/sensu/plugins /etc/sensu/mutators /etc/sensu/handlers /etc/sensu/extensions /etc/sensu/conf.d/handlers /etc/sensu/conf.d/checks).each do |dir|
+  directory dir do
+    user 'root'
+    group 'sensu'
+    mode 00755
+    recursive true
+  end
+end
+
+directory '/var/log/sensu' do
+  user 'sensu'
+  group 'sensu'
+  mode 00750
 end
 
 sensu_base_config node.name
@@ -46,26 +57,15 @@ node['uchiwa']['settings'].each do |k, v|
 end
 config = { 'uchiwa' => settings, 'sensu' => node['uchiwa']['api'] }
 
-group node['uchiwa']['group'] do
-  append true
-end
-
-user node['uchiwa']['owner'] do
-  gid node['uchiwa']['group']
-  home '/opt/uchiwa'
-  shell '/bin/false'
-end
-
 template "#{node['uchiwa']['sensu_homedir']}/uchiwa.json" do
-  user node['uchiwa']['owner']
-  group node['uchiwa']['group']
-  mode 00777
+  mode 00666
   variables(:config => JSON.pretty_generate(config))
   cookbook 'uchiwa'
 end
 
 # install docker and image
 include_recipe 'docker'
+
 docker_image 'osawagiboy/sensu-server' do
   action :pull
 end
