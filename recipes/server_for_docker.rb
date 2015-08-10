@@ -41,6 +41,14 @@ directory '/var/log/sensu' do
   mode 00750
 end
 
+node.set['sensu']['rabbitmq']['host'] = 'localhost'
+node.set['sensu']['rabbitmq']['port'] = 5672
+node.set['sensu']['redis']['host'] = 'localhost'
+node.set['sensu']['redis']['port'] = 6379
+node.set['sensu']['api']['host'] = 'localhost'
+node.set['sensu']['api']['binde'] = '0.0.0.0'
+node.set['sensu']['api']['port'] = 4567
+
 sensu_base_config node.name
 
 include_recipe 'sensu-wrapper::handlers'
@@ -67,6 +75,7 @@ end
 include_recipe 'docker'
 
 docker_image 'osawagiboy/sensu-server' do
+  cmd_timeout 900
   action :pull
 end
 
