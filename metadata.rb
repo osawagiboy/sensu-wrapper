@@ -6,6 +6,6 @@ description      'Installs/Configures sensu-wrapper'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.0'
 
-depends          'sensu', '2.2.0'
-depends          'docker', '0.36'
+depends          'sensu', '2.10.0'
+depends          'docker'
 depends          'uchiwa'

@@ -4,9 +4,7 @@ default['sensu-wrapper']['server']['install_method'] = 'package'
 default['sensu-wrapper']['server']['handlers'] = []
 
 # mailer notification
-default['sensu-wrapper']['server']['mailer'] = false
-default['sensu-wrapper']['server']['mailer_script'] = 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb'
-default['sensu-wrapper']['server']['mailer_handler'] = {}
+default['sensu-wrapper']['server']['notifications'] = []
 
 # checks
 default['sensu-wrapper']['server']['default_checks'] = [

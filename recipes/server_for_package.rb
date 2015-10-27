@@ -19,7 +19,4 @@ end
 
 include_recipe 'sensu-wrapper::handlers'
 include_recipe 'sensu-wrapper::checks'
-
-if node['sensu-wrapper']['server']['mailer']
-  include_recipe 'sensu-wrapper::mailer'
-end
+include_recipe 'sensu-wrapper::notifications'

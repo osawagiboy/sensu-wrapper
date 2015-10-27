@@ -53,10 +53,8 @@ sensu_base_config node.name
 
 include_recipe 'sensu-wrapper::handlers'
 include_recipe 'sensu-wrapper::checks'
+include_recipe 'sensu-wrapper::notifications'
 
-if node['sensu-wrapper']['server']['mailer']
-  include_recipe 'sensu-wrapper::mailer'
-end
 
 # uchiwa
 settings = {}
@@ -86,4 +84,8 @@ docker_container 'osawagiboy/sensu-server' do
   action :run
   volume [ '/etc/sensu:/etc/sensu', '/var/log/sensu:/var/log/sensu' ]
   detach true
+end
+
+docker_container 'sensu-server' do
+  action :restart
 end
