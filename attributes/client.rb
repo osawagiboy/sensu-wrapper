@@ -21,3 +21,5 @@ default['sensu-wrapper']['client']['default_plugins'] = [
   { :name => 'check-ram', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-ram.rb' }
 ]
 default['sensu-wrapper']['client']['extension_plugins'] = []
+
+default['sensu-wrapper']['client']['config'] = {}

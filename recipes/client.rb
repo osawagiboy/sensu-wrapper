@@ -7,6 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
+node['sensu-wrapper']['client']['config'].each do |key, val|
+  node.override['sensu'][key] = nil
+  node.override['sensu'][key] = val
+end
+
 include_recipe 'sensu::default'
 
 node['sensu-wrapper']['dependency_pkgs'].each do |pkg|

@@ -86,6 +86,7 @@ docker_container 'osawagiboy/sensu-server' do
   detach true
 end
 
-docker_container 'sensu-server' do
-  action :restart
+execute 'restart sensu' do
+  command 'docker restart sensu-server'
+  action :run
 end
