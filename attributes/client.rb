@@ -14,11 +14,11 @@ default['sensu-wrapper']['client']['additional'] = {}
 
 # checks plugins
 default['sensu-wrapper']['client']['default_plugins'] = [
-  { :name => 'check-procs', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb' },
-  { :name => 'check-load', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-load.rb' },
-  { :name => 'check-disk', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb' },
-  { :name => 'check-cpu', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-cpu.rb' },
-  { :name => 'check-ram', :source => 'https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/check-ram.rb' }
+  { :name => 'check-procs', :source => 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-process-checks/master/bin/check-process.rb' },
+  { :name => 'check-load', :source => 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-load-checks/master/bin/check-load.rb' },
+  { :name => 'check-disk', :source => 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-disk-checks/master/bin/check-disk-usage.rb' },
+  { :name => 'check-cpu', :source => 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-cpu-checks/master/bin/check-cpu.rb' },
+  { :name => 'check-ram', :source => 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins-memory-checks/master/bin/check-ram.rb' }
 ]
 default['sensu-wrapper']['client']['extension_plugins'] = []
 
